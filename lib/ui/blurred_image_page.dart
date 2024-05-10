@@ -2,8 +2,9 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:ygyr/base/colors/app_color.dart';
-import 'package:ygyr/base/widgets/base_back_button_widget.dart';
+import 'package:ygyr/base/ui_helper/ui_helper.dart';
+import 'package:ygyr/base/widgets/base_app_bar_widget.dart';
+import 'package:ygyr/base/widgets/button/base_primary_text_button_widget.dart';
 
 class BlurredImageView extends StatelessWidget {
   final File imageFile;
@@ -13,26 +14,11 @@ class BlurredImageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColor.appBarColor,
-        automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            BaseBackButtonWidget(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            const Text(
-              'Image Detail Page',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(width: 30),
-          ],
-        ),
+      appBar: BaseAppBarWidget(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        title: 'Image Detail Page',
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -58,42 +44,46 @@ class BlurredImageView extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
+          const Expanded(
             flex: 2,
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'How to recycle',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 8),
-                  const Text(
+                  SizedBox(height: 8),
+                  Text(
                     "Here are some details about recycling.",
                     style: TextStyle(fontSize: 16),
                   ),
-                  const SizedBox(height: 24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text('Recycle'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text('Donate'),
-                      ),
-                    ],
-                  ),
+                  SizedBox(height: 24),
                 ],
               ),
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: UiHelper.getSymmetricPadding(
+            horizontal: Spacing.large, vertical: Spacing.medium),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            BasePrimaryButtonWidget(
+              onPressed: () {},
+              buttonLabel: 'Recycle',
+            ),
+            BasePrimaryButtonWidget(
+              onPressed: () {},
+              buttonLabel: 'Donate',
+            ),
+          ],
+        ),
       ),
     );
   }

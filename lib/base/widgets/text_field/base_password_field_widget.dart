@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ygyr/base/widgets/base_text_field_widget.dart';
+import 'package:ygyr/base/widgets/text_field/base_text_field_widget.dart';
 
 /// A stateful widget representing a password field.
 class BasePasswordFieldWidget extends StatefulWidget {

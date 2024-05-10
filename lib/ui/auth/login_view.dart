@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ygyr/base/layout/app.dart';
 import 'package:ygyr/base/validators/form_validators.dart';
-import 'package:ygyr/base/widgets/base_material_button_widget.dart';
-import 'package:ygyr/base/widgets/base_password_field_widget.dart';
-import 'package:ygyr/base/widgets/base_text_field_widget.dart';
+import 'package:ygyr/base/widgets/button/base_material_button_widget.dart';
+import 'package:ygyr/base/widgets/text_field/base_password_field_widget.dart';
+import 'package:ygyr/base/widgets/text_field/base_text_field_widget.dart';
 import 'package:ygyr/base/widgets/toast.dart';
 import 'package:ygyr/services/authentication_services.dart';
 import 'package:ygyr/ui/auth/register_view.dart';

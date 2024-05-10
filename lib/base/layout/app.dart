@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/widgets/button/base_primary_icon_button_widget.dart';
+import 'package:ygyr/base/widgets/text/base_heading_text_widget.dart';
 import 'package:ygyr/ui/camera_view.dart';
 import 'package:ygyr/ui/home_view.dart';
 import 'package:ygyr/ui/notification_view.dart';
@@ -21,25 +23,19 @@ class _AppState extends State<App> {
   ];
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          _getCurrentPage(),
-          style: const TextStyle(color: Colors.white),
+        title: BaseHeadingTextWidget(
+          text: _getCurrentPage(),
         ),
         backgroundColor: const Color.fromARGB(255, 1, 1, 1),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.notifications,
-              color: Colors.white,
-            ),
+          BaseIconButtonWidget(
+            icon: Icons.notifications,
             onPressed: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) =>

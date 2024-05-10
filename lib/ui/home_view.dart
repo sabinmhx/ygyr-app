@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ygyr/base/ui_helper/ui_helper.dart';
-import 'package:ygyr/base/widgets/base_heading_text_widget.dart';
-import 'package:ygyr/base/widgets/base_label_text_widget.dart';
-import 'package:ygyr/base/widgets/base_primary_icon_button_widget.dart';
+import 'package:ygyr/base/widgets/base_list_view_container_widget.dart';
+import 'package:ygyr/base/widgets/button/base_primary_icon_button_widget.dart';
+import 'package:ygyr/base/widgets/text/base_heading_text_widget.dart';
+import 'package:ygyr/base/widgets/text/base_label_text_widget.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -106,74 +107,19 @@ class HomeView extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
-                  return _buildActivityItem();
+                  return const Padding(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: BaseListViewContainerWidget(
+                      isHome: true,
+                      imagePath: 'assets/images/logo.png',
+                      imageHeight: 50,
+                      imageWidth: 50,
+                    ),
+                  );
                 },
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildActivityItem() {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
-      child: Card(
-        color: const Color.fromARGB(255, 45, 45, 45),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        color: const Color.fromARGB(255, 160, 159, 159),
-                      ),
-                      child: SizedBox(
-                        height: 50,
-                        width: 50,
-                        child: Image.asset(
-                          'assets/images/logo.png',
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Silver",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Text(
-                        "2024-05-05",
-                        style: TextStyle(color: Colors.white, fontSize: 10),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "+22 %",
-                  style: TextStyle(color: Colors.green),
-                ),
-              )
-            ],
-          ),
         ),
       ),
     );
