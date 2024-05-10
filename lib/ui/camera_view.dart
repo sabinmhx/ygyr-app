@@ -54,15 +54,14 @@ class _CameraViewState extends State<CameraView> {
                 _openCamera();
               },
               heroTag: "imageButton",
-              child: const Icon(Icons.image), // Unique hero tag for this button
+              child: const Icon(Icons.image),
             ),
             FloatingActionButton(
               onPressed: () {
                 _openCamera();
               },
               heroTag: "cameraButton",
-              child:
-                  const Icon(Icons.camera), // Unique hero tag for this button
+              child: const Icon(Icons.camera),
             ),
             FloatingActionButton(
               onPressed: () {

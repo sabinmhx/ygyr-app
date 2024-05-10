@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/colors/app_color.dart';
 import 'package:ygyr/base/widgets/base_back_button_widget.dart';
 
 class BlurredImageView extends StatelessWidget {
@@ -13,7 +14,7 @@ class BlurredImageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: AppColor.appBarColor,
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
