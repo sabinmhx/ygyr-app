@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ygyr/ui/camera/camera_view.dart';
-import 'package:ygyr/ui/dashboard/dashboard_view.dart';
-import 'package:ygyr/ui/notification/notification_view.dart';
-import 'package:ygyr/ui/warehouse/warehouse_view.dart';
+import 'package:ygyr/ui/camera_view.dart';
+import 'package:ygyr/ui/dashboard_view.dart';
+import 'package:ygyr/ui/notification_view.dart';
+import 'package:ygyr/ui/warehouse_view.dart';
 
 class App extends StatefulWidget {
   const App({super.key});

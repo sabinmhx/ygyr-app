@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ygyr/ui/camera/blurred_image_page.dart';
+import 'package:ygyr/ui/blurred_image_page.dart';
 
 class CameraView extends StatefulWidget {
   const CameraView({super.key});
@@ -53,19 +53,24 @@ class _CameraViewState extends State<CameraView> {
               onPressed: () {
                 _openCamera();
               },
-              child: const Icon(Icons.image),
+              heroTag: "imageButton",
+              child: const Icon(Icons.image), // Unique hero tag for this button
             ),
             FloatingActionButton(
               onPressed: () {
                 _openCamera();
               },
-              child: const Icon(Icons.camera),
+              heroTag: "cameraButton",
+              child:
+                  const Icon(Icons.camera), // Unique hero tag for this button
             ),
             FloatingActionButton(
               onPressed: () {
                 _openCamera();
               },
-              child: const Icon(Icons.video_call),
+              heroTag: "videoButton",
+              child: const Icon(
+                  Icons.video_call), // Unique hero tag for this button
             ),
           ],
         ),

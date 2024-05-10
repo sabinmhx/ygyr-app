@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ygyr/ui/auth/login/login_view.dart';
+import 'package:ygyr/ui/auth/login_view.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

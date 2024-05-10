@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/layout/app.dart';
 import 'package:ygyr/base/validators/form_validators.dart';
 import 'package:ygyr/base/widgets/base_password_field_widget.dart';
 import 'package:ygyr/base/widgets/base_text_field_widget.dart';
 import 'package:ygyr/base/widgets/toast.dart';
-import 'package:ygyr/ui/auth/register/register_view.dart';
-import 'package:ygyr/ui/auth/services/authentication_services.dart';
-import 'package:ygyr/ui/dashboard/dashboard_view.dart';
+import 'package:ygyr/services/authentication_services.dart';
+import 'package:ygyr/ui/auth/register_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -152,7 +152,7 @@ class _LoginScreenState extends State<LoginView> {
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
-                const DashboardView(),
+                const App(),
           ),
         );
       } else {
