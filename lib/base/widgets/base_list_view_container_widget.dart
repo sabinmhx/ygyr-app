@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/widgets/text/base_heading_text_widget.dart';
 import 'package:ygyr/base/widgets/text/base_label_text_widget.dart';
 
 class BaseListViewContainerWidget extends StatelessWidget {
@@ -57,27 +58,39 @@ class BaseListViewContainerWidget extends StatelessWidget {
               ],
             ),
             (isHome ?? false)
-                ? const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: BaseLabelTextWidget(
-                      text: '22%',
-                      color: Colors.green,
-                    ))
-                : const Column(
-                    children: [
-                      BaseLabelTextWidget(text: 'ClassName'),
-                      Row(
-                        children: [
-                          BaseLabelTextWidget(text: 'Date'),
-                          SizedBox(width: 40),
-                          BaseLabelTextWidget(text: 'Quantity'),
-                        ],
-                      ),
-                      BaseLabelTextWidget(text: 'Data'),
-                    ],
-                  )
+                ? _homePageListDetail()
+                : _warehousePageListDetail()
           ],
         ),
+      ),
+    );
+  }
+
+  Column _warehousePageListDetail() {
+    return const Column(
+      children: [
+        BaseHeadingTextWidget(
+          text: 'ClassName',
+          fontSize: 20,
+        ),
+        Row(
+          children: [
+            BaseLabelTextWidget(text: 'Date'),
+            SizedBox(width: 40),
+            BaseLabelTextWidget(text: 'Quantity'),
+          ],
+        ),
+        BaseLabelTextWidget(text: 'Data'),
+      ],
+    );
+  }
+
+  Padding _homePageListDetail() {
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: BaseLabelTextWidget(
+        text: '22%',
+        color: Colors.green,
       ),
     );
   }

@@ -21,6 +21,7 @@ class _CameraViewState extends State<CameraView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
         child: _imageFile != null ? _imageDisplay() : _emptyImage(),
       ),
@@ -30,7 +31,7 @@ class _CameraViewState extends State<CameraView> {
 
   Widget _emptyImage() => const BaseLabelTextWidget(
         text: 'No image selected',
-        color: Colors.black,
+        color: Colors.white,
       );
 
   Image _imageDisplay() {

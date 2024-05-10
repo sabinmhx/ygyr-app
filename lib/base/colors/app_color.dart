@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColor {
   static const Color appBarColor = Colors.black;
+
   static const Color bottomNavigationBarColor = Colors.black;
   // static const Color primaryButtonColor = Colors.white;
   // static const Color secondaryButtonColor = Colors.black;

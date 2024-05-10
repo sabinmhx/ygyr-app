@@ -13,9 +13,6 @@ class BaseLabelTextWidget extends StatelessWidget {
   /// Font weight of the text.
   final FontWeight? fontWeight;
 
-  /// Maximum number of lines to display before truncating the text.
-  final int? maxLines;
-
   /// Alignment of the text within its container.
   final TextAlign? textAlign;
 
@@ -37,16 +34,14 @@ class BaseLabelTextWidget extends StatelessWidget {
     this.fontSize = 14,
     this.color = Colors.white,
     this.fontWeight = FontWeight.normal,
-    this.maxLines = 1,
     this.textAlign = TextAlign.left,
-    this.textOverflow = TextOverflow.ellipsis,
+    this.textOverflow,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      maxLines: maxLines,
       textAlign: textAlign,
       overflow: textOverflow,
       style: TextStyle(

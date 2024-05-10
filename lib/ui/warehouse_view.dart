@@ -11,7 +11,7 @@ class WarehouseView extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       color: Colors.black,
       child: ListView.builder(
-        itemCount: 3,
+        itemCount: 10,
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {

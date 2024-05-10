@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:ygyr/base/ui_helper/ui_helper.dart';
 import 'package:ygyr/base/widgets/base_app_bar_widget.dart';
@@ -57,17 +59,36 @@ class WarehouseDetailView extends StatelessWidget {
                 child:
                     Image.asset('assets/images/logo.png', fit: BoxFit.contain),
               ),
+              Positioned.fill(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 1,
+                    sigmaY: 1,
+                    tileMode: TileMode.clamp,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.black.withOpacity(0.4),
+                    ),
+                  ),
+                ),
+              ),
               Positioned(
                 top: constraints.maxHeight * 0.05,
-                left: constraints.maxWidth * 0.37,
+                left: constraints.maxWidth * 0.35,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
+                  padding: UiHelper.getSymmetricPadding(
+                    horizontal: Spacing.xSmall,
+                    vertical: Spacing.xSmall,
                   ),
-                  color: Colors.black.withOpacity(0.5),
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: const BaseLabelTextWidget(
                     text: 'Classname',
+                    fontSize: 18,
                   ),
                 ),
               ),
