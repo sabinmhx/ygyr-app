@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ygyr/base/validators/form_validators.dart';
+import 'package:ygyr/base/widgets/base_material_button_widget.dart';
 import 'package:ygyr/base/widgets/base_password_field_widget.dart';
 import 'package:ygyr/base/widgets/base_text_field_widget.dart';
 import 'package:ygyr/base/widgets/toast.dart';
 import 'package:ygyr/services/authentication_services.dart';
 import 'package:ygyr/ui/auth/login_view.dart';
-import 'package:ygyr/ui/dashboard_view.dart';
+import 'package:ygyr/ui/home_view.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -66,27 +67,14 @@ class _RegisterViewState extends State<RegisterView> {
                       },
                     ),
                     const SizedBox(height: 20),
-                    MaterialButton(
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          register();
-                        }
-                      },
-                      shape: ContinuousRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      minWidth: double.maxFinite,
-                      color: const Color.fromARGB(255, 38, 38, 38),
-                      child: const Padding(
-                        padding: EdgeInsets.all(12.0),
-                        child: Text(
-                          'Register',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    BaseMaterialButtonWidget(
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            register();
+                          }
+                        },
+                        text: 'Register'),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -137,7 +125,7 @@ class _RegisterViewState extends State<RegisterView> {
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
-                const DashboardView(),
+                const HomeView(),
           ),
         );
       } else {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ygyr/ui/camera_view.dart';
-import 'package:ygyr/ui/dashboard_view.dart';
+import 'package:ygyr/ui/home_view.dart';
 import 'package:ygyr/ui/notification_view.dart';
 import 'package:ygyr/ui/warehouse_view.dart';
 
@@ -15,7 +15,7 @@ class _AppState extends State<App> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    DashboardView(),
+    HomeView(),
     CameraView(),
     WarehouseView(),
   ];

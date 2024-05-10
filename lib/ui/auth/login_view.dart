@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ygyr/base/layout/app.dart';
 import 'package:ygyr/base/validators/form_validators.dart';
+import 'package:ygyr/base/widgets/base_material_button_widget.dart';
 import 'package:ygyr/base/widgets/base_password_field_widget.dart';
 import 'package:ygyr/base/widgets/base_text_field_widget.dart';
 import 'package:ygyr/base/widgets/toast.dart';
@@ -89,23 +90,13 @@ class _LoginScreenState extends State<LoginView> {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    MaterialButton(
-                      shape: ContinuousRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
+                    BaseMaterialButtonWidget(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           login();
                         }
                       },
-                      minWidth: double.maxFinite,
-                      color: const Color.fromARGB(255, 38, 38, 38),
-                      child: const Padding(
-                        padding: EdgeInsets.all(12.0),
-                        child: Text(
-                          'Login',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
+                      text: 'Login',
                     ),
                     const SizedBox(height: 20),
                     Row(
