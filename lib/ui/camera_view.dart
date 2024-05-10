@@ -15,22 +15,6 @@ class _CameraViewState extends State<CameraView> {
   final ImagePicker _picker = ImagePicker();
   XFile? _imageFile;
 
-  Future<void> _openCamera() async {
-    final pickedImage = await _picker.pickImage(source: ImageSource.camera);
-    if (pickedImage != null) {
-      setState(() {
-        _imageFile = pickedImage;
-      });
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>
-              BlurredImageView(imageFile: File(pickedImage.path)),
-        ),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,11 +53,28 @@ class _CameraViewState extends State<CameraView> {
               },
               heroTag: "videoButton",
               child: const Icon(
-                  Icons.video_call), // Unique hero tag for this button
+                Icons.video_call,
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _openCamera() async {
+    final pickedImage = await _picker.pickImage(source: ImageSource.camera);
+    if (pickedImage != null) {
+      setState(() {
+        _imageFile = pickedImage;
+      });
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              BlurredImageView(imageFile: File(pickedImage.path)),
+        ),
+      );
+    }
   }
 }

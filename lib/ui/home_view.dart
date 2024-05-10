@@ -1,198 +1,180 @@
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/ui_helper/ui_helper.dart';
+import 'package:ygyr/base/widgets/base_heading_text_widget.dart';
+import 'package:ygyr/base/widgets/base_label_text_widget.dart';
+import 'package:ygyr/base/widgets/base_primary_icon_button_widget.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.black,
-      ),
-      child: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                "Dashboard",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Padding(
+        padding: UiHelper.getSymmetricPadding(
+          horizontal: Spacing.xSmall,
+          vertical: Spacing.xSmall,
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: UiHelper.getSymmetricPadding(
+                vertical: Spacing.xSmall,
+                horizontal: Spacing.xMedium,
+              ),
+              child: const Align(
+                alignment: Alignment.topLeft,
+                child: BaseLabelTextWidget(text: 'Dashboard'),
               ),
             ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    for (var i = 0; i < 5; i++)
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 150,
-                          height: 120,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 45, 45, 45),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(8),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                const Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    'searched',
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 222, 219, 219),
+            Expanded(
+              flex: 2,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      width: 180,
+                      child: Card(
+                        color: const Color.fromARGB(255, 45, 45, 45),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              const Align(
+                                alignment: Alignment.topLeft,
+                                child: BaseLabelTextWidget(text: 'Searched'),
+                              ),
+                              UiHelper.getHorizontalSpacing(
+                                  spacing: Spacing.small),
+                              const Align(
+                                alignment: Alignment.topLeft,
+                                child: BaseHeadingTextWidget(text: '24'),
+                              ),
+                              const SizedBox(height: 15),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: const Icon(
+                                      Icons.arrow_right,
+                                      size: 20,
                                     ),
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                const Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    '24',
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 222, 219, 219),
-                                      fontSize: 26,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 15),
-                                GestureDetector(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                        color: Colors.green,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
-                                      ),
-                                      child: const Icon(
-                                        Icons.arrow_right,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
+                              )
+                            ],
                           ),
                         ),
                       ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            UiHelper.getVerticalSpacing(spacing: Spacing.medium),
+            Padding(
+              padding: UiHelper.getSymmetricPadding(
+                  horizontal: Spacing.xSmall, vertical: Spacing.xSmall),
+              child: const Align(
+                alignment: Alignment.topLeft,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    BaseLabelTextWidget(text: 'Recent Activity'),
+                    BaseIconButtonWidget(
+                      icon: Icons.read_more,
+                    ),
                   ],
                 ),
-              ],
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Expanded(
+              flex: 5,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  return _buildActivityItem();
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildActivityItem() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: Card(
+        color: const Color.fromARGB(255, 45, 45, 45),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
                 children: [
-                  Text(
-                    "Recent Activity",
-                    style: TextStyle(
-                      color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        color: const Color.fromARGB(255, 160, 159, 159),
+                      ),
+                      child: SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: Image.asset(
+                          'assets/images/logo.png',
+                        ),
+                      ),
                     ),
                   ),
-                  Icon(
-                    Icons.read_more,
-                    color: Colors.white,
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Silver",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        "2024-05-05",
+                        style: TextStyle(color: Colors.white, fontSize: 10),
+                      ),
+                    ],
                   )
                 ],
               ),
-            ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  "+22 %",
+                  style: TextStyle(color: Colors.green),
+                ),
+              )
+            ],
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  for (var i = 0; i < 5; i++)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 45, 45, 45),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey),
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
-                                        color: const Color.fromARGB(
-                                            255, 160, 159, 159)),
-                                    child: SizedBox(
-                                      height: 50,
-                                      width: 50,
-                                      child: Image.asset(
-                                        'assets/images/logo.png',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const Column(
-                                  children: [
-                                    Text(
-                                      "Silver",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "2024-05-05",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 10),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "+22 %",
-                                style: TextStyle(color: Colors.green),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                ],
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

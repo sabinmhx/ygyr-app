@@ -1,99 +1,86 @@
 import 'package:flutter/material.dart';
+import 'package:ygyr/ui/warehouse_detail_view.dart';
 
 class WarehouseView extends StatelessWidget {
   const WarehouseView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: _topContainer(),
-            ),
-            Expanded(
-              child: _bottomContainer(context),
-            ),
-          ],
-        ),
-      ),
+    return Container(
+      color: Colors.black,
+      child: ListView.builder(
+          itemCount: 3,
+          itemBuilder: (context, index) {
+            return _warehouseDetailContainer(context);
+          }),
     );
   }
 
-  Widget _topContainer() {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(10),
-          margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.black,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(10),
+  _warehouseDetailContainer(context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const WarehouseDetailView(),
           ),
-          child: const Text("ClassName"),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black),
+          borderRadius: BorderRadius.circular(20),
+          color: const Color.fromARGB(255, 45, 45, 45),
         ),
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black,
-                width: 2,
-              ),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Image.asset('assets/images/logo.png'),
-          ),
-        ),
-        const SizedBox(height: 10),
-        Row(
+        child: Row(
           children: [
-            Expanded(
-              child: _warehouseTextButton('Contact'),
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                  color: const Color.fromARGB(255, 160, 159, 159)),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height / 10,
+                width: MediaQuery.of(context).size.height / 10,
+                child: Image.asset(
+                  'assets/images/logo.png',
+                ),
+              ),
             ),
             const Spacer(),
-            Expanded(
-              child: _warehouseTextButton('Quantity'),
+            const Column(
+              children: [
+                Text(
+                  "Title/Classname",
+                  style: TextStyle(color: Colors.white),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Date",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(
+                      width: 40,
+                    ),
+                    Text(
+                      "Quantity",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+                Text(
+                  "data",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
             ),
           ],
         ),
-        const SizedBox(height: 20),
-      ],
-    );
-  }
-
-  Container _bottomContainer(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          border: Border.all(width: 2, color: Colors.black),
-          borderRadius: BorderRadius.circular(10)),
-      child: const Column(
-        children: [
-          Text('How to recycle?'),
-        ],
-      ),
-    );
-  }
-
-  TextButton _warehouseTextButton(String text) {
-    return TextButton(
-      onPressed: () {},
-      style: TextButton.styleFrom(
-        backgroundColor: Colors.green,
-        shape: ContinuousRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-      child: Text(
-        text,
-        style: const TextStyle(color: Colors.white),
       ),
     );
   }
