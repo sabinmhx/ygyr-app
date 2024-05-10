@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ygyr/base/ui_helper/ui_helper.dart';
 import 'package:ygyr/base/widgets/base_app_bar_widget.dart';
+import 'package:ygyr/base/widgets/button/base_primary_text_button_widget.dart';
+import 'package:ygyr/base/widgets/text/base_label_text_widget.dart';
 
 class WarehouseDetailView extends StatelessWidget {
   const WarehouseDetailView({super.key});
@@ -25,6 +27,7 @@ class WarehouseDetailView extends StatelessWidget {
             Expanded(
               child: _topContainer(),
             ),
+            UiHelper.getVerticalSpacing(),
             Expanded(
               child: _bottomContainer(context),
             ),
@@ -34,7 +37,64 @@ class WarehouseDetailView extends StatelessWidget {
     );
   }
 
-  Container _bottomContainer(BuildContext context) {
+  Widget _topContainer() {
+    return Expanded(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: constraints.maxHeight,
+                width: constraints.maxWidth,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child:
+                    Image.asset('assets/images/logo.png', fit: BoxFit.contain),
+              ),
+              Positioned(
+                top: constraints.maxHeight * 0.05,
+                left: constraints.maxWidth * 0.37,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
+                  color: Colors.black.withOpacity(0.5),
+                  child: const BaseLabelTextWidget(
+                    text: 'Classname',
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: constraints.maxHeight * 0.05,
+                left: constraints.maxWidth * 0.05,
+                child: BasePrimaryButtonWidget(
+                  onPressed: () {},
+                  buttonLabel: 'Contact',
+                ),
+              ),
+              Positioned(
+                bottom: constraints.maxHeight * 0.05,
+                right: constraints.maxWidth * 0.05,
+                child: BasePrimaryButtonWidget(
+                  onPressed: () {},
+                  buttonLabel: 'Quantity',
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _bottomContainer(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
       width: MediaQuery.of(context).size.width,
@@ -45,66 +105,6 @@ class WarehouseDetailView extends StatelessWidget {
         children: [
           Text('How to recycle?'),
         ],
-      ),
-    );
-  }
-
-  Widget _topContainer() {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(10),
-          margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.black,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: const Text("ClassName"),
-        ),
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black,
-                width: 2,
-              ),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Image.asset('assets/images/logo.png'),
-          ),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Expanded(
-              child: _warehouseTextButton('Contact'),
-            ),
-            const Spacer(),
-            Expanded(
-              child: _warehouseTextButton('Quantity'),
-            ),
-          ],
-        ),
-        const SizedBox(height: 20),
-      ],
-    );
-  }
-
-  TextButton _warehouseTextButton(String text) {
-    return TextButton(
-      onPressed: () {},
-      style: TextButton.styleFrom(
-        backgroundColor: Colors.green,
-        shape: ContinuousRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-      child: Text(
-        text,
-        style: const TextStyle(color: Colors.white),
       ),
     );
   }

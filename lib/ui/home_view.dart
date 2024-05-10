@@ -87,7 +87,7 @@ class HomeView extends StatelessWidget {
             UiHelper.getVerticalSpacing(spacing: Spacing.medium),
             Padding(
               padding: UiHelper.getSymmetricPadding(
-                  horizontal: Spacing.xSmall, vertical: Spacing.xSmall),
+                  horizontal: Spacing.xMedium, vertical: Spacing.xSmall),
               child: const Align(
                 alignment: Alignment.topLeft,
                 child: Row(
@@ -103,20 +103,23 @@ class HomeView extends StatelessWidget {
             ),
             Expanded(
               flex: 5,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) {
-                  return const Padding(
-                    padding: EdgeInsets.only(bottom: 8.0),
-                    child: BaseListViewContainerWidget(
-                      isHome: true,
-                      imagePath: 'assets/images/logo.png',
-                      imageHeight: 50,
-                      imageWidth: 50,
-                    ),
-                  );
-                },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context, int index) {
+                    return const Padding(
+                      padding: EdgeInsets.only(bottom: 8.0),
+                      child: BaseListViewContainerWidget(
+                        isHome: true,
+                        imagePath: 'assets/images/logo.png',
+                        imageHeight: 50,
+                        imageWidth: 50,
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],

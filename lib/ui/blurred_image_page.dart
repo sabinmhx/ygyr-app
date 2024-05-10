@@ -20,57 +20,65 @@ class BlurredImageView extends StatelessWidget {
         },
         title: 'Image Detail Page',
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            flex: 3,
-            child: Stack(
-              children: [
-                Image.file(
-                  imageFile,
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-                Positioned.fill(
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                    child: Container(
-                      color: Colors.black.withOpacity(0.4),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          // SliverAppBar with the background image
+          SliverAppBar(
+            expandedHeight: 300.0,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.file(
+                    imageFile,
+                    fit: BoxFit.cover,
+                  ),
+                  Positioned.fill(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                      child: Container(color: Colors.black.withOpacity(0.4)),
                     ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // SliverList with the details about recycling
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'How to recycle',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        "Here are some details about recycling. "
+                        "You can add a long description here that "
+                        "will be scrollable independently of the image.",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(height: 24),
+                    ],
                   ),
                 ),
               ],
-            ),
-          ),
-          const Expanded(
-            flex: 2,
-            child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'How to recycle',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    "Here are some details about recycling.",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  SizedBox(height: 24),
-                ],
-              ),
             ),
           ),
         ],
       ),
       bottomNavigationBar: Padding(
         padding: UiHelper.getSymmetricPadding(
-            horizontal: Spacing.large, vertical: Spacing.medium),
+          horizontal: Spacing.large,
+          vertical: Spacing.medium,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
