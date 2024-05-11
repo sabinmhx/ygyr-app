@@ -99,6 +99,7 @@ class _CameraViewState extends State<CameraView> {
           await ImageUploadService.uploadImage(File(_imageFile!.path));
 
       if (imageResponseModel != null) {
+        Toast.show(context, 'Image uploaded successfully');
         Navigator.push(
           context,
           MaterialPageRoute(
