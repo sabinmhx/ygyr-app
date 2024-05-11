@@ -51,8 +51,8 @@ class BasePrimaryButtonWidget extends StatelessWidget {
     this.padding,
     this.margin,
     this.buttonWidth,
-    this.buttonColor = AppColor.secondaryButtonColor,
-    this.buttonLabelColor = AppColor.secondaryButtonTextColor,
+    this.buttonColor = Colors.black,
+    this.buttonLabelColor = Colors.white,
   });
 
   @override
@@ -73,7 +73,7 @@ class BasePrimaryButtonWidget extends StatelessWidget {
               vertical: Spacing.xSmall,
             ),
         decoration: BoxDecoration(
-          color: buttonColor,
+          color: Colors.grey,
           boxShadow: [
             BoxShadow(
               color: buttonLabelColor,
@@ -81,12 +81,11 @@ class BasePrimaryButtonWidget extends StatelessWidget {
               blurRadius: 1,
             ),
           ],
-          borderRadius: BorderRadius.circular(UiHelper.getRadius()),
         ),
         child: (!(isLoading ?? false))
             ? BaseLabelTextWidget(
                 text: buttonLabel,
-                color: AppColor.secondaryButtonTextColor,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
                 textAlign: TextAlign.center,
               )

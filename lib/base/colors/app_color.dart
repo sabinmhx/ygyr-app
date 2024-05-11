@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 class AppColor {
   static const Color appBarColor = Colors.black;
-
+  static const Color primaryAppColor = Colors.green;
   static const Color bottomNavigationBarColor = Colors.black;
   // static const Color primaryButtonColor = Colors.white;
   // static const Color secondaryButtonColor = Colors.black;
   static const Color primaryContainerColor = Colors.white;
   static const Color secondaryContainerColor = Colors.black;
+  static Color surfaceTintColor = Colors.grey[100]!;
 
   /// Background color of snackbar assigned to shade of grey color.
   static Color defaultSnackbarBackgroundColor = Colors.grey;

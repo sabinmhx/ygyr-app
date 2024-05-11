@@ -41,7 +41,7 @@ class BaseHeadingTextWidget extends StatelessWidget {
     super.key,
     required this.text,
     this.fontSize = 30,
-    this.color = Colors.white,
+    this.color = Colors.black,
     this.fontWeight = FontWeight.bold,
     this.maxLines = 1,
     this.textAlign = TextAlign.left,

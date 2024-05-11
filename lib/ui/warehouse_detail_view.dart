@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ygyr/base/ui_helper/ui_helper.dart';
 import 'package:ygyr/base/widgets/base_app_bar_widget.dart';
 import 'package:ygyr/base/widgets/button/base_primary_text_button_widget.dart';
+import 'package:ygyr/base/widgets/text/base_heading_text_widget.dart';
 import 'package:ygyr/base/widgets/text/base_label_text_widget.dart';
 
 class WarehouseDetailView extends StatelessWidget {
@@ -31,7 +32,7 @@ class WarehouseDetailView extends StatelessWidget {
               child: _topContainer(),
             ),
             UiHelper.getVerticalSpacing(),
-            Expanded(
+            Flexible(
               flex: 2,
               child: _bottomContainer(context),
             ),
@@ -57,13 +58,16 @@ class WarehouseDetailView extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Image.asset('assets/images/logo.png', fit: BoxFit.contain),
+              child: Image.asset(
+                'assets/images/logo.png',
+                fit: BoxFit.contain,
+              ),
             ),
             Positioned.fill(
               child: BackdropFilter(
                 filter: ImageFilter.blur(
-                  sigmaX: 1,
-                  sigmaY: 1,
+                  sigmaX: 0.75,
+                  sigmaY: 0.75,
                   tileMode: TileMode.clamp,
                 ),
                 child: Container(
@@ -78,13 +82,9 @@ class WarehouseDetailView extends StatelessWidget {
               top: 10,
               left: 10,
               child: Container(
-                padding: UiHelper.getSymmetricPadding(
-                  horizontal: Spacing.xSmall,
-                  vertical: Spacing.xSmall,
-                ),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  border: Border.all(width: 2),
-                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black, width: 1.5),
                 ),
                 child: const BaseLabelTextWidget(
                   text: 'Classname',
@@ -103,9 +103,15 @@ class WarehouseDetailView extends StatelessWidget {
             Positioned(
               bottom: constraints.maxHeight * 0.05,
               right: constraints.maxWidth * 0.05,
-              child: BasePrimaryButtonWidget(
-                onPressed: () {},
-                buttonLabel: 'Quantity',
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 1.5),
+                ),
+                child: const BaseLabelTextWidget(
+                  text: 'Quantity',
+                  fontSize: 18,
+                ),
               ),
             ),
           ],
@@ -121,9 +127,15 @@ class WarehouseDetailView extends StatelessWidget {
       decoration: BoxDecoration(
           border: Border.all(width: 2, color: Colors.black),
           borderRadius: BorderRadius.circular(10)),
-      child: const Column(
+      child: Column(
         children: [
-          Text('How to recycle?'),
+          const BaseHeadingTextWidget(
+            text: 'How to recycle?',
+            fontSize: 25,
+          ),
+          UiHelper.getHorizontalSpacing(spacing: Spacing.large),
+          const BaseLabelTextWidget(text: 'Mock Row 1'),
+          const BaseLabelTextWidget(text: 'Mock Row 2'),
         ],
       ),
     );

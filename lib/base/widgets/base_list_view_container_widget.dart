@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ygyr/base/widgets/text/base_heading_text_widget.dart';
+import 'package:ygyr/base/colors/app_color.dart';
+import 'package:ygyr/base/ui_helper/ui_helper.dart';
 import 'package:ygyr/base/widgets/text/base_label_text_widget.dart';
 
 class BaseListViewContainerWidget extends StatelessWidget {
@@ -18,7 +19,9 @@ class BaseListViewContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color.fromARGB(255, 45, 45, 45),
+      elevation: 2,
+      surfaceTintColor: AppColor.surfaceTintColor,
+      shadowColor: Colors.grey,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -37,7 +40,7 @@ class BaseListViewContainerWidget extends StatelessWidget {
                       borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
-                      color: const Color.fromARGB(255, 160, 159, 159),
+                      color: Colors.grey[100],
                     ),
                     child: Image.asset(
                       imagePath,
@@ -67,20 +70,47 @@ class BaseListViewContainerWidget extends StatelessWidget {
   }
 
   Column _warehousePageListDetail() {
-    return const Column(
+    return Column(
       children: [
-        BaseHeadingTextWidget(
-          text: 'ClassName',
-          fontSize: 20,
+        Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black, width: 1.5),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            children: [
+              const BaseLabelTextWidget(
+                text: 'Classname',
+                fontSize: 15,
+              ),
+              UiHelper.getVerticalSpacing(spacing: Spacing.large),
+              const Row(
+                children: [
+                  BaseLabelTextWidget(
+                    text: '2020-01-01',
+                    fontSize: 15,
+                  ),
+                  SizedBox(width: 40),
+                  BaseLabelTextWidget(text: '10'),
+                ],
+              ),
+              UiHelper.getVerticalSpacing(spacing: Spacing.large),
+              const Column(
+                children: [
+                  BaseLabelTextWidget(
+                    text: 'Data Row 1',
+                    fontSize: 15,
+                  ),
+                  BaseLabelTextWidget(
+                    text: 'Data Row 2',
+                    fontSize: 15,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-        Row(
-          children: [
-            BaseLabelTextWidget(text: 'Date'),
-            SizedBox(width: 40),
-            BaseLabelTextWidget(text: 'Quantity'),
-          ],
-        ),
-        BaseLabelTextWidget(text: 'Data'),
       ],
     );
   }
@@ -90,7 +120,7 @@ class BaseListViewContainerWidget extends StatelessWidget {
       padding: EdgeInsets.all(8.0),
       child: BaseLabelTextWidget(
         text: '22%',
-        color: Colors.green,
+        color: AppColor.primaryAppColor,
       ),
     );
   }

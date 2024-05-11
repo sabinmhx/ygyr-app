@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/colors/app_color.dart';
 import 'package:ygyr/base/ui_helper/ui_helper.dart';
 import 'package:ygyr/base/widgets/base_list_view_container_widget.dart';
 import 'package:ygyr/base/widgets/button/base_primary_icon_button_widget.dart';
@@ -11,7 +12,6 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       body: Padding(
         padding: UiHelper.getSymmetricPadding(
           horizontal: Spacing.xSmall,
@@ -40,9 +40,10 @@ class HomeView extends StatelessWidget {
                     child: SizedBox(
                       width: 180,
                       child: Card(
-                        color: const Color.fromARGB(255, 45, 45, 45),
+                        elevation: 3,
+                        surfaceTintColor: AppColor.surfaceTintColor,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -58,19 +59,19 @@ class HomeView extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 child: BaseHeadingTextWidget(text: '24'),
                               ),
-                              const SizedBox(height: 15),
+                              const SizedBox(height: 20),
                               GestureDetector(
                                 onTap: () {},
                                 child: Align(
-                                  alignment: Alignment.topRight,
+                                  alignment: Alignment.bottomRight,
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: Colors.green,
-                                      borderRadius: BorderRadius.circular(10),
+                                      color: AppColor.primaryAppColor,
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: const Icon(
                                       Icons.arrow_right,
-                                      size: 20,
+                                      size: 45,
                                     ),
                                   ),
                                 ),

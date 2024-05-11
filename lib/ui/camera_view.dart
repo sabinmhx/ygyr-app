@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ygyr/base/ui_helper/ui_helper.dart';
 import 'package:ygyr/base/widgets/text/base_label_text_widget.dart';
+import 'package:ygyr/base/widgets/toast.dart';
 import 'package:ygyr/services/image_services.dart';
 import 'package:ygyr/ui/blurred_image_page.dart';
 
@@ -22,7 +23,6 @@ class _CameraViewState extends State<CameraView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       body: Center(
         child: _imageFile != null ? _imageDisplay() : _emptyImage(),
       ),
@@ -30,10 +30,7 @@ class _CameraViewState extends State<CameraView> {
     );
   }
 
-  Widget _emptyImage() => const BaseLabelTextWidget(
-        text: 'No image selected',
-        color: Colors.white,
-      );
+  Widget _emptyImage() => const BaseLabelTextWidget(text: 'No image selected');
 
   Widget _imageDisplay() {
     return Stack(
@@ -110,6 +107,7 @@ class _CameraViewState extends State<CameraView> {
           ),
         );
       } else {
+        Toast.show(context, 'Failed to upload Image');
         log('Failed to upload image');
       }
       setState(() {

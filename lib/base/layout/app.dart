@@ -26,10 +26,11 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
+        shadowColor: Colors.grey[50],
         title: BaseHeadingTextWidget(
           text: _getCurrentPage(),
         ),
-        backgroundColor: const Color.fromARGB(255, 1, 1, 1),
         automaticallyImplyLeading: false,
         actions: [
           BaseIconButtonWidget(

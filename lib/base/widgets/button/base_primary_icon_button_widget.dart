@@ -17,6 +17,8 @@ class BaseIconButtonWidget extends StatelessWidget {
   /// Flag to check if the button is enabled.
   final bool isEnabled;
 
+  final Color? iconColor;
+
   /// Creates a custom container with an icon button.
   ///
   /// The [onPress] parameter is a callback function to be executed when the button is pressed.
@@ -33,18 +35,19 @@ class BaseIconButtonWidget extends StatelessWidget {
     this.border,
     this.borderRadius,
     this.isEnabled = true,
+    this.iconColor = Colors.black,
   });
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        // decoration: BoxDecoration(
-        //   border: Border.all(color: Colors.white),
-        // ),
         padding: UiHelper.getSymmetricPadding(
             vertical: Spacing.small, horizontal: Spacing.small),
-        child: Icon(icon, color: Colors.white),
+        child: Icon(
+          icon,
+          color: iconColor,
+        ),
       ),
     );
   }

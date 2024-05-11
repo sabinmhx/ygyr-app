@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ygyr/base/colors/app_color.dart';
-import 'package:ygyr/base/widgets/button/base_back_button_widget.dart';
 import 'package:ygyr/base/widgets/text/base_heading_text_widget.dart';
 
 class BaseAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -16,10 +14,13 @@ class BaseAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColor.appBarColor,
       automaticallyImplyLeading: false,
-      leading: BaseBackButtonWidget(
-        onPressed: onPressed,
+      leading: InkWell(
+        onTap: onPressed,
+        child: const Icon(
+          Icons.arrow_back_ios_new_rounded,
+          color: Colors.black,
+        ),
       ),
       centerTitle: true,
       title: BaseHeadingTextWidget(

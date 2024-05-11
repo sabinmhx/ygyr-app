@@ -29,7 +29,7 @@ class BaseAlertDialogWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.grey,
     );
   }
 }
