@@ -6,9 +6,14 @@ import 'package:ygyr/base/widgets/base_app_bar_widget.dart';
 import 'package:ygyr/base/widgets/button/base_primary_text_button_widget.dart';
 import 'package:ygyr/base/widgets/text/base_heading_text_widget.dart';
 import 'package:ygyr/base/widgets/text/base_label_text_widget.dart';
+import 'package:ygyr/model/warehouse_model.dart';
 
 class WarehouseDetailView extends StatelessWidget {
-  const WarehouseDetailView({super.key});
+  final WarehouseDetail? warehouseDetail;
+  const WarehouseDetailView({
+    super.key,
+    this.warehouseDetail,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +64,7 @@ class WarehouseDetailView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Image.asset(
-                'assets/images/logo.png',
+                warehouseDetail?.url ?? '',
                 fit: BoxFit.contain,
               ),
             ),
@@ -86,8 +91,8 @@ class WarehouseDetailView extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 1.5),
                 ),
-                child: const BaseLabelTextWidget(
-                  text: 'Classname',
+                child: BaseLabelTextWidget(
+                  text: warehouseDetail?.label ?? '',
                   fontSize: 18,
                 ),
               ),
@@ -108,8 +113,8 @@ class WarehouseDetailView extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 1.5),
                 ),
-                child: const BaseLabelTextWidget(
-                  text: 'Quantity',
+                child: BaseLabelTextWidget(
+                  text: warehouseDetail?.quantity.toString() ?? '10',
                   fontSize: 18,
                 ),
               ),
@@ -134,8 +139,8 @@ class WarehouseDetailView extends StatelessWidget {
             fontSize: 25,
           ),
           UiHelper.getHorizontalSpacing(spacing: Spacing.large),
-          const BaseLabelTextWidget(text: 'Mock Row 1'),
-          const BaseLabelTextWidget(text: 'Mock Row 2'),
+          BaseLabelTextWidget(text: warehouseDetail?.description?.first ?? ''),
+          BaseLabelTextWidget(text: warehouseDetail?.description?.last ?? ''),
         ],
       ),
     );

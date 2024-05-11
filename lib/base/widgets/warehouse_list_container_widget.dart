@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:ygyr/base/colors/app_color.dart';
 import 'package:ygyr/base/ui_helper/ui_helper.dart';
 import 'package:ygyr/base/widgets/text/base_label_text_widget.dart';
+import 'package:ygyr/model/warehouse_model.dart';
 
 class WarehouseListContainerWidget extends StatelessWidget {
-  final String imagePath;
   final double? imageHeight;
   final double? imageWidth;
-
+  final WarehouseDetail? data;
   const WarehouseListContainerWidget({
     super.key,
-    required this.imagePath,
     this.imageHeight,
     this.imageWidth,
+    this.data,
   });
 
   @override
@@ -40,7 +40,7 @@ class WarehouseListContainerWidget extends StatelessWidget {
                 ),
                 child: Center(
                   child: Image.asset(
-                    imagePath,
+                    data?.url ?? '',
                     width: imageWidth,
                     height: imageHeight,
                     fit: BoxFit.contain,
@@ -70,32 +70,32 @@ class WarehouseListContainerWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const BaseLabelTextWidget(
-                text: 'Classname',
+              BaseLabelTextWidget(
+                text: data?.label ?? '',
                 fontSize: 15,
               ),
               UiHelper.getVerticalSpacing(spacing: Spacing.large),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   BaseLabelTextWidget(
-                    text: '2020-01-01',
+                    text: data?.date ?? '1',
                     fontSize: 15,
                   ),
-                  SizedBox(width: 40),
-                  BaseLabelTextWidget(text: '10'),
+                  const SizedBox(width: 40),
+                  BaseLabelTextWidget(text: data?.quantity.toString() ?? '1'),
                 ],
               ),
               UiHelper.getVerticalSpacing(spacing: Spacing.large),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BaseLabelTextWidget(
-                    text: 'Data Row 1',
+                    text: data?.description?.first ?? '',
                     fontSize: 15,
                   ),
                   BaseLabelTextWidget(
-                    text: 'Data Row 2',
+                    text: data?.description?.last ?? '',
                     fontSize: 15,
                   ),
                 ],
