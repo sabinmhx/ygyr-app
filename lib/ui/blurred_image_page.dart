@@ -100,7 +100,10 @@ class BlurredImageView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         BasePrimaryButtonWidget(
-                          onPressed: () {},
+                          onPressed: () {
+                            Toast.show(
+                                context, 'Recorded for recycle successfully');
+                          },
                           buttonLabel: 'Recycle',
                         ),
                         BasePrimaryButtonWidget(
