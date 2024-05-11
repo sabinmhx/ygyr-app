@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:ygyr/base/utils/endpoint.dart';
 import 'package:ygyr/base/utils/network_service.dart';
-import 'package:ygyr/base/utils/urls.dart';
 
 class AuthenticationServices {
   Future<bool> login(String email, String password) async {
     try {
       final response = await NetworkService.post(
-        url: Uri.parse('${URL.baseUrl}auth/login'),
+        url: Uri.parse('${Endpoint.baseUrl}auth/login'),
         body: json.encode({'email': email, 'password': password}),
         headers: {'Content-Type': 'application/json'},
       );
@@ -32,7 +32,7 @@ class AuthenticationServices {
       String confirmPassword) async {
     try {
       final response = await NetworkService.post(
-        url: Uri.parse('${URL.baseUrl}auth/register'),
+        url: Uri.parse('${Endpoint.baseUrl}auth/register'),
         body: jsonEncode({
           'name': name,
           'email': email,

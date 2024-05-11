@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:ygyr/base/utils/urls.dart';
+import 'package:ygyr/base/utils/endpoint.dart';
 import 'package:ygyr/model/image_upload_response.dart';
 
 class ImageUploadService {
   static Future<ImageUploadResponseModel?> uploadImage(File imageFile) async {
-    final url = Uri.parse('${URL.baseUrl}detect');
+    final url = Uri.parse('${Endpoint.baseUrl}detect');
 
     try {
       var request = http.MultipartRequest('POST', url);
