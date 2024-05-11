@@ -21,6 +21,7 @@ class _LoginScreenState extends State<LoginView> {
   final formKey = GlobalKey<FormState>();
 
   bool rememberMe = false;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -93,9 +94,13 @@ class _LoginScreenState extends State<LoginView> {
                     BaseMaterialButtonWidget(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
+                          setState(() {
+                            _isLoading = true;
+                          });
                           login();
                         }
                       },
+                      isLoading: _isLoading,
                       text: 'Login',
                     ),
                     const SizedBox(height: 20),
@@ -111,7 +116,7 @@ class _LoginScreenState extends State<LoginView> {
                             ),
                           ),
                           onTap: () {
-                            Navigator.pushReplacement(
+                            Navigator.push(
                               context,
                               PageRouteBuilder(
                                 pageBuilder:
@@ -134,22 +139,30 @@ class _LoginScreenState extends State<LoginView> {
   }
 
   void login() {
-    String email = emailController.text;
-    String password = passwordController.text;
+    if (formKey.currentState!.validate()) {
+      String email = emailController.text;
+      String password = passwordController.text;
 
-    AuthenticationServices().login(email, password).then((success) {
-      if (success) {
-        Navigator.push(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                const App(),
-          ),
-        );
-      } else {
-        Toast.show(
-            context, "You have entered wrong credentials. Please try again.");
-      }
-    });
+      AuthenticationServices authService = AuthenticationServices();
+      authService.login(email, password).then((success) {
+        setState(() {
+          _isLoading = false;
+        });
+        if (success) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const App(),
+            ),
+          );
+          Toast.show(context, "Login successful");
+        } else {
+          Toast.show(
+            context,
+            "You have entered wrong credentials. Please try again.",
+          );
+        }
+      });
+    }
   }
 }

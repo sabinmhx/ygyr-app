@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/layout/app.dart';
 import 'package:ygyr/base/validators/form_validators.dart';
 import 'package:ygyr/base/widgets/button/base_material_button_widget.dart';
 import 'package:ygyr/base/widgets/text_field/base_password_field_widget.dart';
@@ -6,7 +7,6 @@ import 'package:ygyr/base/widgets/text_field/base_text_field_widget.dart';
 import 'package:ygyr/base/widgets/toast.dart';
 import 'package:ygyr/services/authentication_services.dart';
 import 'package:ygyr/ui/auth/login_view.dart';
-import 'package:ygyr/ui/home_view.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -23,6 +23,7 @@ class _RegisterViewState extends State<RegisterView> {
       TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,12 +69,17 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                     const SizedBox(height: 20),
                     BaseMaterialButtonWidget(
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            register();
-                          }
-                        },
-                        text: 'Register'),
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          setState(() {
+                            _isLoading = true;
+                          });
+                          register();
+                        }
+                      },
+                      isLoading: _isLoading,
+                      text: 'Register',
+                    ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -116,21 +122,32 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   void register() {
+    String name = nameController.text;
     String email = emailController.text;
     String password = passwordController.text;
+    String confirmPassword = confirmPasswordController.text;
 
-    AuthenticationServices().register(email, password).then((success) {
+    AuthenticationServices()
+        .register(
+      name,
+      email,
+      password,
+      confirmPassword,
+    )
+        .then((success) {
       if (success) {
+        setState(() {
+          _isLoading = false;
+        });
         Navigator.push(
           context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                const HomeView(),
+          MaterialPageRoute(
+            builder: (context) => const App(),
           ),
         );
+        Toast.show(context, "Registration successful");
       } else {
-        Toast.show(
-            context, "You have entered wrong credentials. Please try again.");
+        Toast.show(context, "Registration failed. Please try again.");
       }
     });
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ygyr/base/ui_helper/ui_helper.dart';
+import 'package:ygyr/base/colors/app_color.dart';
+import 'package:ygyr/base/widgets/text/base_label_text_widget.dart';
 
 class BaseMaterialButtonWidget extends StatelessWidget {
   final Function() onPressed;
@@ -19,14 +20,23 @@ class BaseMaterialButtonWidget extends StatelessWidget {
       onPressed: (!(isLoading!)) ? onPressed : null,
       minWidth: double.maxFinite,
       color: const Color.fromARGB(255, 38, 38, 38),
-      child: Padding(
-        padding: UiHelper.getSymmetricPadding(
-            horizontal: Spacing.small, vertical: Spacing.small),
-        child: Text(
-          text,
-          style: const TextStyle(color: Colors.white),
-        ),
-      ),
+      child: (!(isLoading ?? false))
+          ? BaseLabelTextWidget(
+              text: text,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              textAlign: TextAlign.center,
+            )
+          : const Center(
+              child: SizedBox(
+                height: 16,
+                width: 16,
+                child: CircularProgressIndicator(
+                  color: AppColor.primaryButtonColor,
+                  strokeWidth: 2,
+                ),
+              ),
+            ),
     );
   }
 }

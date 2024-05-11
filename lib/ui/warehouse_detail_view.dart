@@ -27,10 +27,12 @@ class WarehouseDetailView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
+              flex: 1,
               child: _topContainer(),
             ),
             UiHelper.getVerticalSpacing(),
             Expanded(
+              flex: 2,
               child: _bottomContainer(context),
             ),
           ],
@@ -40,78 +42,75 @@ class WarehouseDetailView extends StatelessWidget {
   }
 
   Widget _topContainer() {
-    return Expanded(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                height: constraints.maxHeight,
-                width: constraints.maxWidth,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 2,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              height: constraints.maxHeight,
+              width: constraints.maxWidth,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Image.asset('assets/images/logo.png', fit: BoxFit.contain),
+            ),
+            Positioned.fill(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 1,
+                  sigmaY: 1,
+                  tileMode: TileMode.clamp,
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.black.withOpacity(0.4),
                   ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 10,
+              left: 10,
+              child: Container(
+                padding: UiHelper.getSymmetricPadding(
+                  horizontal: Spacing.xSmall,
+                  vertical: Spacing.xSmall,
+                ),
+                decoration: BoxDecoration(
+                  border: Border.all(width: 2),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child:
-                    Image.asset('assets/images/logo.png', fit: BoxFit.contain),
-              ),
-              Positioned.fill(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 1,
-                    sigmaY: 1,
-                    tileMode: TileMode.clamp,
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.black.withOpacity(0.4),
-                    ),
-                  ),
+                child: const BaseLabelTextWidget(
+                  text: 'Classname',
+                  fontSize: 18,
                 ),
               ),
-              Positioned(
-                top: constraints.maxHeight * 0.05,
-                left: constraints.maxWidth * 0.35,
-                child: Container(
-                  padding: UiHelper.getSymmetricPadding(
-                    horizontal: Spacing.xSmall,
-                    vertical: Spacing.xSmall,
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const BaseLabelTextWidget(
-                    text: 'Classname',
-                    fontSize: 18,
-                  ),
-                ),
+            ),
+            Positioned(
+              bottom: constraints.maxHeight * 0.05,
+              left: constraints.maxWidth * 0.05,
+              child: BasePrimaryButtonWidget(
+                onPressed: () {},
+                buttonLabel: 'Contact',
               ),
-              Positioned(
-                bottom: constraints.maxHeight * 0.05,
-                left: constraints.maxWidth * 0.05,
-                child: BasePrimaryButtonWidget(
-                  onPressed: () {},
-                  buttonLabel: 'Contact',
-                ),
+            ),
+            Positioned(
+              bottom: constraints.maxHeight * 0.05,
+              right: constraints.maxWidth * 0.05,
+              child: BasePrimaryButtonWidget(
+                onPressed: () {},
+                buttonLabel: 'Quantity',
               ),
-              Positioned(
-                bottom: constraints.maxHeight * 0.05,
-                right: constraints.maxWidth * 0.05,
-                child: BasePrimaryButtonWidget(
-                  onPressed: () {},
-                  buttonLabel: 'Quantity',
-                ),
-              ),
-            ],
-          );
-        },
-      ),
+            ),
+          ],
+        );
+      },
     );
   }
 

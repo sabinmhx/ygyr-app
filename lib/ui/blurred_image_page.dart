@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -6,11 +5,11 @@ import 'package:ygyr/base/widgets/button/base_primary_text_button_widget.dart';
 import 'package:ygyr/base/widgets/dialog_box/base_show_dialog_utils.dart';
 import 'package:ygyr/base/widgets/text/base_heading_text_widget.dart';
 import 'package:ygyr/base/widgets/text/base_label_text_widget.dart';
+import 'package:ygyr/model/image_upload_response.dart';
 
 class BlurredImageView extends StatelessWidget {
-  final File imageFile;
-
-  const BlurredImageView({super.key, required this.imageFile});
+  final ImageUploadResponseModel? imageUploadResponseModel;
+  const BlurredImageView({super.key, required this.imageUploadResponseModel});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +19,19 @@ class BlurredImageView extends StatelessWidget {
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-              child: Image.file(
-                imageFile,
+              child: Image.network(
+                imageUploadResponseModel?.data?.url ??
+                    'https://th.bing.com/th/id/R.62325205054ee42cbd441c7036a7e3ec?rik=RHdJrVUP%2b%2b8klA&pid=ImgRaw&r=0',
                 fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+                  return const Center(
+                      child: CircularProgressIndicator(
+                    color: Colors.black,
+                  ));
+                },
               ),
             ),
           ),
@@ -56,6 +65,11 @@ class BlurredImageView extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  BaseHeadingTextWidget(
+                    text: imageUploadResponseModel?.data?.label ?? 'Label',
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
                   const BaseHeadingTextWidget(
                     text: 'How to recycle',
                     fontSize: 20,

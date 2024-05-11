@@ -1,1 +1,3 @@
-const baseUrl = "http://localhost:8000/api/v1";
+class URL {
+  static const baseUrl = 'http://192.168.103.27:8000/api/v1/';
+}

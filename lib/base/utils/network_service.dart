@@ -15,7 +15,8 @@ class NetworkService {
   /// Performs a GET request.
   /// - [url]: The URL to send the request to.
   /// - [headers]: Optional HTTP headers to include in the request.
-  static Future<Response> get(Uri url, {Map<String, String>? headers}) async {
+  static Future<Response> get(Uri url, dynamic body,
+      {Map<String, String>? headers}) async {
     try {
       final response = await http.get(
         url,
@@ -34,9 +35,14 @@ class NetworkService {
   /// - [body]: Optional body of the request.
   /// - [encoding]: Optional encoding for the request body.
   /// - [headers]: Optional HTTP headers to include in the request.
-  static Future<Response> post(Uri url, {Map<String, String>? headers}) async {
+  static Future<Response> post(
+      {required Uri url, dynamic body, Map<String, String>? headers}) async {
     try {
-      final response = await http.post(url, headers: headers);
+      final response = await http.post(
+        url,
+        headers: headers,
+        body: body,
+      );
       _checkResponse(response);
       return response;
     } catch (e) {
@@ -49,9 +55,14 @@ class NetworkService {
   /// - [body]: Optional body of the request.
   /// - [encoding]: Optional encoding for the request body.
   /// - [headers]: Optional HTTP headers to include in the request.
-  static Future<Response> put(Uri url, {Map<String, String>? headers}) async {
+  static Future<Response> put(Uri url, dynamic body,
+      {Map<String, String>? headers}) async {
     try {
-      final response = await http.put(url, headers: headers);
+      final response = await http.put(
+        url,
+        headers: headers,
+        body: body,
+      );
       _checkResponse(response);
       return response;
     } catch (e) {
@@ -64,9 +75,14 @@ class NetworkService {
   /// - [body]: Optional body of the request.
   /// - [encoding]: Optional encoding for the request body.
   /// - [headers]: Optional HTTP headers to include in the request.
-  static Future<Response> patch(Uri url, {Map<String, String>? headers}) async {
+  static Future<Response> patch(Uri url, dynamic body,
+      {Map<String, String>? headers}) async {
     try {
-      final response = await http.patch(url, headers: headers);
+      final response = await http.patch(
+        url,
+        headers: headers,
+        body: body,
+      );
       _checkResponse(response);
       return response;
     } catch (e) {
