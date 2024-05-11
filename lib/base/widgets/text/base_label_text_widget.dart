@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/colors/app_color.dart';
 
 class BaseLabelTextWidget extends StatelessWidget {
   /// The text to display.
@@ -32,7 +33,7 @@ class BaseLabelTextWidget extends StatelessWidget {
     super.key,
     required this.text,
     this.fontSize = 14,
-    this.color = Colors.black,
+    this.color = AppColor.textColor,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.left,
     this.textOverflow,

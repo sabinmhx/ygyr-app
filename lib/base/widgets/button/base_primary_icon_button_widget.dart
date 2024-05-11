@@ -18,6 +18,7 @@ class BaseIconButtonWidget extends StatelessWidget {
   final bool isEnabled;
 
   final Color? iconColor;
+  final double? iconSize;
 
   /// Creates a custom container with an icon button.
   ///
@@ -35,7 +36,8 @@ class BaseIconButtonWidget extends StatelessWidget {
     this.border,
     this.borderRadius,
     this.isEnabled = true,
-    this.iconColor = Colors.black,
+    this.iconColor,
+    this.iconSize,
   });
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,7 @@ class BaseIconButtonWidget extends StatelessWidget {
         child: Icon(
           icon,
           color: iconColor,
+          size: iconSize,
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/colors/app_color.dart';
 import 'package:ygyr/base/widgets/text/base_heading_text_widget.dart';
 
 class BaseAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -15,6 +16,7 @@ class BaseAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
+      backgroundColor: AppColor.primaryColor,
       leading: InkWell(
         onTap: onPressed,
         child: const Icon(

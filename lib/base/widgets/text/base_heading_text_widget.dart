@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/colors/app_color.dart';
 
 class BaseHeadingTextWidget extends StatelessWidget {
   /// The text to display.
@@ -41,7 +42,7 @@ class BaseHeadingTextWidget extends StatelessWidget {
     super.key,
     required this.text,
     this.fontSize = 30,
-    this.color = Colors.black,
+    this.color = AppColor.textColor,
     this.fontWeight = FontWeight.bold,
     this.maxLines = 1,
     this.textAlign = TextAlign.left,

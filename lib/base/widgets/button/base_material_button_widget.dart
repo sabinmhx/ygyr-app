@@ -32,7 +32,7 @@ class BaseMaterialButtonWidget extends StatelessWidget {
                 height: 16,
                 width: 16,
                 child: CircularProgressIndicator(
-                  color: AppColor.primaryButtonColor,
+                  color: AppColor.primaryColor,
                   strokeWidth: 2,
                 ),
               ),

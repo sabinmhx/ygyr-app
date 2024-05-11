@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ygyr/base/colors/app_color.dart';
 import 'package:ygyr/base/ui_helper/ui_helper.dart';
-import 'package:ygyr/base/widgets/base_list_view_container_widget.dart';
 import 'package:ygyr/base/widgets/button/base_primary_icon_button_widget.dart';
+import 'package:ygyr/base/widgets/recent_activity_list_view_widget.dart';
 import 'package:ygyr/base/widgets/text/base_heading_text_widget.dart';
 import 'package:ygyr/base/widgets/text/base_label_text_widget.dart';
 
@@ -12,21 +12,23 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.backgroundColor,
       body: Padding(
         padding: UiHelper.getSymmetricPadding(
           horizontal: Spacing.xSmall,
           vertical: Spacing.xSmall,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: UiHelper.getSymmetricPadding(
                 vertical: Spacing.xSmall,
                 horizontal: Spacing.xMedium,
               ),
-              child: const Align(
-                alignment: Alignment.topLeft,
-                child: BaseLabelTextWidget(text: 'Dashboard'),
+              child: const BaseLabelTextWidget(
+                text: 'Leaderboard',
+                fontSize: 18,
               ),
             ),
             Expanded(
@@ -41,43 +43,44 @@ class HomeView extends StatelessWidget {
                       width: 180,
                       child: Card(
                         elevation: 3,
-                        surfaceTintColor: AppColor.surfaceTintColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              const Align(
-                                alignment: Alignment.topLeft,
-                                child: BaseLabelTextWidget(text: 'Searched'),
-                              ),
-                              UiHelper.getHorizontalSpacing(
-                                  spacing: Spacing.small),
-                              const Align(
-                                alignment: Alignment.topLeft,
-                                child: BaseHeadingTextWidget(text: '24'),
-                              ),
-                              const SizedBox(height: 20),
-                              GestureDetector(
-                                onTap: () {},
-                                child: Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: AppColor.primaryAppColor,
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: const Icon(
-                                      Icons.arrow_right,
-                                      size: 45,
-                                    ),
-                                  ),
+                        child: Stack(
+                          children: [
+                            Positioned.fill(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.asset(
+                                  'assets/images/logo.png',
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return const Icon(Icons.error);
+                                  },
+                                  colorBlendMode: BlendMode.dstOut,
+                                  color: Colors.grey.withOpacity(0.3),
                                 ),
-                              )
-                            ],
-                          ),
+                              ),
+                            ),
+                            if (index == 4)
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: BaseIconButtonWidget(
+                                  icon: Icons.forward,
+                                  onPressed: () {},
+                                ),
+                              ),
+                            const Padding(
+                              padding: EdgeInsets.only(right: 8.0),
+                              child: Align(
+                                alignment: Alignment.bottomRight,
+                                child: BaseHeadingTextWidget(
+                                  text: '24',
+                                  color: AppColor.primaryColor,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -89,17 +92,15 @@ class HomeView extends StatelessWidget {
             Padding(
               padding: UiHelper.getSymmetricPadding(
                   horizontal: Spacing.xMedium, vertical: Spacing.xSmall),
-              child: const Align(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BaseLabelTextWidget(text: 'Recent Activity'),
-                    BaseIconButtonWidget(
-                      icon: Icons.read_more,
-                    ),
-                  ],
-                ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  BaseLabelTextWidget(
+                    text: 'Recent Activity',
+                    fontSize: 18,
+                  ),
+                  BaseIconButtonWidget(icon: Icons.read_more),
+                ],
               ),
             ),
             Expanded(
@@ -112,8 +113,7 @@ class HomeView extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return const Padding(
                       padding: EdgeInsets.only(bottom: 8.0),
-                      child: BaseListViewContainerWidget(
-                        isHome: true,
+                      child: RecentActivityListWidget(
                         imagePath: 'assets/images/logo.png',
                         imageHeight: 50,
                         imageWidth: 50,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/colors/app_color.dart';
 import 'package:ygyr/base/widgets/button/base_primary_icon_button_widget.dart';
 import 'package:ygyr/base/widgets/text/base_heading_text_widget.dart';
 import 'package:ygyr/ui/camera_view.dart';
@@ -27,14 +28,16 @@ class _AppState extends State<App> {
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        shadowColor: Colors.grey[50],
+        backgroundColor: AppColor.primaryColor,
         title: BaseHeadingTextWidget(
           text: _getCurrentPage(),
+          color: AppColor.textColor,
         ),
         automaticallyImplyLeading: false,
         actions: [
           BaseIconButtonWidget(
             icon: Icons.notifications,
+            iconColor: AppColor.iconButtonColor,
             onPressed: () {
               Navigator.push(
                 context,
@@ -48,7 +51,7 @@ class _AppState extends State<App> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColor.primaryColor,
         unselectedItemColor: Colors.white,
         items: const [
           BottomNavigationBarItem(

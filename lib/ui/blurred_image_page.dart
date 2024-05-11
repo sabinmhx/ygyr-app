@@ -1,10 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/widgets/button/base_primary_icon_button_widget.dart';
 import 'package:ygyr/base/widgets/button/base_primary_text_button_widget.dart';
 import 'package:ygyr/base/widgets/dialog_box/base_show_dialog_utils.dart';
 import 'package:ygyr/base/widgets/text/base_heading_text_widget.dart';
 import 'package:ygyr/base/widgets/text/base_label_text_widget.dart';
+import 'package:ygyr/base/widgets/toast.dart';
 import 'package:ygyr/model/image_upload_response.dart';
 
 class BlurredImageView extends StatelessWidget {
@@ -48,13 +50,10 @@ class BlurredImageView extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconButton(
-                          icon: const Icon(
-                            Icons.close,
-                            color: Colors.black,
-                            size: 32,
-                          ),
+                        BaseIconButtonWidget(
+                          icon: Icons.close,
                           onPressed: () => Navigator.pop(context),
+                          iconSize: 40,
                         ),
                       ],
                     ),
@@ -77,13 +76,11 @@ class BlurredImageView extends StatelessWidget {
                     BaseHeadingTextWidget(
                       text: imageUploadResponseModel?.data?.label ?? 'Label',
                       fontSize: 20,
-                      color: Colors.black,
                     ),
                     const SizedBox(height: 8),
                     const BaseHeadingTextWidget(
                       text: 'How to recycle?',
                       fontSize: 20,
-                      color: Colors.black,
                     ),
                     const SizedBox(height: 40),
                     Column(
@@ -95,7 +92,6 @@ class BlurredImageView extends StatelessWidget {
                                   ?.data?.description?.first ??
                               'Row Data 1',
                           fontSize: 16,
-                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -118,6 +114,7 @@ class BlurredImageView extends StatelessWidget {
                                 Navigator.pop(context);
                               },
                               onPositivePressed: () {
+                                Toast.show(context, 'Donated successfully');
                                 Navigator.pop(context);
                               },
                             );

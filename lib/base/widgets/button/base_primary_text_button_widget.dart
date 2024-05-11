@@ -51,8 +51,8 @@ class BasePrimaryButtonWidget extends StatelessWidget {
     this.padding,
     this.margin,
     this.buttonWidth,
-    this.buttonColor = Colors.black,
-    this.buttonLabelColor = Colors.white,
+    this.buttonColor = AppColor.primaryColor,
+    this.buttonLabelColor = AppColor.accentColor,
   });
 
   @override
@@ -72,11 +72,11 @@ class BasePrimaryButtonWidget extends StatelessWidget {
               horizontal: Spacing.xSmall,
               vertical: Spacing.xSmall,
             ),
-        decoration: BoxDecoration(
-          color: Colors.grey,
+        decoration: const BoxDecoration(
+          color: AppColor.primaryColor,
           boxShadow: [
             BoxShadow(
-              color: buttonLabelColor,
+              color: AppColor.iconButtonColor,
               spreadRadius: 1,
               blurRadius: 1,
             ),
@@ -94,7 +94,7 @@ class BasePrimaryButtonWidget extends StatelessWidget {
                   height: 16,
                   width: 16,
                   child: CircularProgressIndicator(
-                    color: AppColor.primaryButtonColor,
+                    color: AppColor.primaryColor,
                     strokeWidth: 2,
                   ),
                 ),

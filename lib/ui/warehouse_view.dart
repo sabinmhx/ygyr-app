@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ygyr/base/ui_helper/ui_helper.dart';
-import 'package:ygyr/base/widgets/base_list_view_container_widget.dart';
+import 'package:ygyr/base/widgets/warehouse_list_container_widget.dart';
 import 'package:ygyr/ui/warehouse_detail_view.dart';
 
 class WarehouseView extends StatelessWidget {
@@ -18,6 +18,7 @@ class WarehouseView extends StatelessWidget {
           itemCount: 10,
           itemBuilder: (context, index) {
             return InkWell(
+              borderRadius: BorderRadius.circular(10),
               onTap: () {
                 Navigator.push(
                   context,
@@ -26,8 +27,7 @@ class WarehouseView extends StatelessWidget {
                   ),
                 );
               },
-              child: const BaseListViewContainerWidget(
-                isHome: false,
+              child: const WarehouseListContainerWidget(
                 imagePath: 'assets/images/logo.png',
                 imageHeight: 100,
                 imageWidth: 100,

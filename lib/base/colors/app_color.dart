@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-  static const Color appBarColor = Colors.black;
-  static const Color primaryAppColor = Colors.green;
-  static const Color bottomNavigationBarColor = Colors.black;
-  // static const Color primaryButtonColor = Colors.white;
-  // static const Color secondaryButtonColor = Colors.black;
-  static const Color primaryContainerColor = Colors.white;
-  static const Color secondaryContainerColor = Colors.black;
-  static Color surfaceTintColor = Colors.grey[100]!;
+  // Define the colors
+  static const Color primaryColor = Color(0xFF4CAF50); // Earthy Green
+  static const Color accentColor = Color(0xFF2196F3); // Ocean Blue
+  static const Color backgroundColor = Color(0xFFF5F5F5); // Light Grey
+  static const Color textColor = Color(0xFF333333); // Dark Grey
+  static const Color errorColor = Color(0xFFFF5722); // Red
+  static const Color successColor = Color(0xFF388E3C); // Forest Green
 
-  /// Background color of snackbar assigned to shade of grey color.
-  static Color defaultSnackbarBackgroundColor = Colors.grey;
+  static const Color iconButtonColor = Colors.black;
 
   /// Background Color of the primary button
   static const Color primaryButtonColor = Color(0xff15e838);
@@ -30,10 +28,4 @@ class AppColor {
 
   /// Color for the background of the container
   static Color containerBackgroundColor = const Color(0xFFF0F0F0);
-
-  /// Color of text
-  static Color textColor = const Color(0xff222222);
-
-  /// Color for the error
-  static Color errorColor = Colors.red;
 }
