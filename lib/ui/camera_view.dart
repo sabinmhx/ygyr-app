@@ -20,6 +20,7 @@ class _CameraViewState extends State<CameraView> {
   final ImagePicker _picker = ImagePicker();
   XFile? _imageFile;
   bool _isUploading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

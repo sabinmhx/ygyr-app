@@ -19,7 +19,7 @@ class BaseMaterialButtonWidget extends StatelessWidget {
       shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(15)),
       onPressed: (!(isLoading!)) ? onPressed : null,
       minWidth: double.maxFinite,
-      color: const Color.fromARGB(255, 38, 38, 38),
+      color: AppColor.primaryColor,
       child: (!(isLoading ?? false))
           ? BaseLabelTextWidget(
               text: text,
