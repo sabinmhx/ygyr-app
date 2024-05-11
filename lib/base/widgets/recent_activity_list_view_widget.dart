@@ -6,11 +6,17 @@ class RecentActivityListWidget extends StatelessWidget {
   final String imagePath;
   final double? imageHeight;
   final double? imageWidth;
+  final String? date;
+  final String? title;
+  final String? percent;
   const RecentActivityListWidget({
     super.key,
     required this.imagePath,
     this.imageHeight,
     this.imageWidth,
+    this.date,
+    this.title,
+    this.percent,
   });
 
   @override
@@ -46,28 +52,24 @@ class RecentActivityListWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BaseLabelTextWidget(text: 'Silver'),
-                    BaseLabelTextWidget(text: '2020')
+                    BaseLabelTextWidget(text: title ?? ''),
+                    BaseLabelTextWidget(text: date ?? '')
                   ],
                 )
               ],
             ),
-            _homePageListDetail(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: BaseLabelTextWidget(
+                text: percent ?? '10%',
+                color: AppColor.primaryColor,
+              ),
+            ),
           ],
         ),
-      ),
-    );
-  }
-
-  Padding _homePageListDetail() {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
-      child: BaseLabelTextWidget(
-        text: '22%',
-        color: AppColor.primaryColor,
       ),
     );
   }
