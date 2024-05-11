@@ -10,8 +10,23 @@ import 'package:ygyr/model/leaderboard_model.dart';
 import 'package:ygyr/services/activity_services.dart';
 import 'package:ygyr/services/leaderboard_services.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  late Future<LeaderboardModel?> _leaderboardFuture;
+  // late Future<ActivityModel?> _recentActivityFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _leaderboardFuture = LeaderboardServices().getLeaderBoard();
+    // _recentActivityFuture = ActivityServices().getActivity();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +81,7 @@ class HomeView extends StatelessWidget {
 
   Widget _buildLeaderboardList() {
     return FutureBuilder<LeaderboardModel?>(
-      future: LeaderboardServices().getLeaderBoard(),
+      future: _leaderboardFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -94,7 +109,7 @@ class HomeView extends StatelessWidget {
                           Positioned.fill(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
+                              child: Image.network(
                                 data.url ?? 'assets/images/logo.png',
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) {

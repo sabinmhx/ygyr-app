@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:ygyr/base/ui_helper/ui_helper.dart';
 import 'package:ygyr/base/widgets/button/base_primary_icon_button_widget.dart';
 import 'package:ygyr/base/widgets/button/base_primary_text_button_widget.dart';
 import 'package:ygyr/base/widgets/dialog_box/base_show_dialog_utils.dart';
@@ -28,9 +29,14 @@ class BlurredImageView extends StatelessWidget {
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                     child: Image.network(
-                      imageUploadResponseModel?.data?.url ??
-                          'https://th.bing.com/th/id/R.62325205054ee42cbd441c7036a7e3ec?rik=RHdJrVUP%2b%2b8klA&pid=ImgRaw&r=0',
+                      imageUploadResponseModel?.data?.url ?? '',
                       fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Center(
+                          child:
+                              BaseLabelTextWidget(text: 'Error Building Image'),
+                        );
+                      },
                       loadingBuilder: (context, child, loadingProgress) {
                         if (loadingProgress == null) {
                           return child;
@@ -63,40 +69,68 @@ class BlurredImageView extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 2,
-            child: SingleChildScrollView(
-              child: Container(
-                color: Colors.white,
-                padding: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 16.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    BaseHeadingTextWidget(
-                      text: imageUploadResponseModel?.data?.label ?? 'Label',
-                      fontSize: 20,
-                    ),
-                    const SizedBox(height: 8),
-                    const BaseHeadingTextWidget(
-                      text: 'How to recycle?',
-                      fontSize: 20,
-                    ),
-                    const SizedBox(height: 40),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: List.generate(
-                        2,
-                        (index) => BaseLabelTextWidget(
-                          text: imageUploadResponseModel
-                                  ?.data?.description?.first ??
-                              'Row Data 1',
-                          fontSize: 16,
-                        ),
+            flex: 4,
+            child: Container(
+              color: Colors.white,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  BaseHeadingTextWidget(
+                    text: imageUploadResponseModel?.data?.label ?? 'Label',
+                    fontSize: 20,
+                  ),
+                  const SizedBox(height: 8),
+                  const BaseHeadingTextWidget(
+                    text: 'How to recycle?',
+                    fontSize: 20,
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 5.0,
+                      ),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: imageUploadResponseModel
+                                ?.data?.description?.length ??
+                            0,
+                        itemBuilder: (context, index) {
+                          final description =
+                              imageUploadResponseModel?.data?.description;
+                          final itemText =
+                              description != null && index < description.length
+                                  ? description[index]
+                                  : 'Row Data $index';
+
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 1),
+                            child: Row(
+                              children: [
+                                const BaseHeadingTextWidget(
+                                  text: '\u2022',
+                                  fontSize: 18,
+                                ),
+                                UiHelper.getHorizontalSpacing(
+                                    spacing: Spacing.xSmall),
+                                Expanded(
+                                  child: BaseLabelTextWidget(
+                                    text: itemText,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    const SizedBox(height: 80),
-                    Row(
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         BasePrimaryButtonWidget(
@@ -126,8 +160,8 @@ class BlurredImageView extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
